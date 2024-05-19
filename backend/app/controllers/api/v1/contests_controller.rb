@@ -19,8 +19,8 @@ before_action :set_contests, only: [:show, :votes_summary]
     render json: {
       total_votes: @total_votes,
       participants: {
-        participant_1: { id: @contest.participant_1_id, votes: @votes_for_participant_1 },
-        participant_2: { id: @contest.participant_2_id, votes: @votes_for_participant_2 }
+        participant_1: { id: @contest.first_participant_id, votes: @votes_for_participant_1 },
+        participant_2: { id: @contest.second_participant_id, votes: @votes_for_participant_2 }
       }
     }
   end
