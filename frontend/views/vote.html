@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação BBB</title>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+  </head>
+  <body>
+    <h1>Vote no seu participante favorito!</h1>
+    <form id="votingForm">
+        <label>
+            <input type="radio" name="participant" value="Participant1"> Participante 1
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="participant" value="Participant2"> Participante 2
+        </label>
+        <br><br>
+        <br>
+        <button class="g-recaptcha" data-sitekey="6LcG9OEpAAAAAEUgSuMe4WeLOyVDrbAlVufNY042" data-callback='onSubmit' data-action='submit'>
+          Enviar
+        </button>
+    </form>
+    <script src="../assets/script.js"></script>
+  </body>
+</html>
