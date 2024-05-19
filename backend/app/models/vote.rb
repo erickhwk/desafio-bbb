@@ -10,7 +10,7 @@ class Vote < ApplicationRecord
     return if contest.nil?
 
     unless [contest.first_participant_id, contest.second_participant_id].include?(participant_id)
-      errors.add(:participant_id, 'must be one of the participants in the contest')
+      errors.add(:participant_id, 'is not a valid contestant.')
     end
   end
 end
