@@ -1,22 +1,37 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
-  text-align: center;
-  background-color: #f0f0f0;
+  background-color: rgb(126 34 206);
+  font-family: "Encode Sans Expanded", sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 50px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
   color: #333;
+  font-size: 36px;
+  text-align: center;
+}
+
+h2 {
+  color: white;
+  text-align: center;
+  font-size: 28px;
+  font-family: "Encode Sans Expanded", sans-serif;
+  font-weight: 100;
 }
 
 form {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  margin-top: 20px;
+  margin: 30px auto;
+  display: block;
+  width: 60%;
 }
 
 label {
@@ -25,8 +40,11 @@ label {
 }
 
 button {
+  width: 100%;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: rgb(126 34 206);
+  font-size: 16px;
+  font-weight: bold;
   border: none;
   border-radius: 4px;
   color: white;
@@ -34,7 +52,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: rgb(150, 77, 213);
 }
 
 #error, #success {
@@ -44,4 +62,30 @@ button:hover {
   margin: 20px;
   border: 1px solid #f5c6cb;
   border-radius: 5px;
+}
+
+.participant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  border: 1px solid lightgray ;
+  border-radius: 4px;
+  padding: 15px 5px;
+  margin-bottom: 10px;
+}
+
+.participant img {
+  margin: -15px -5px;
+}
+
+.option {
+  font-size: 20px
+}
+
+.subtitle {
+  color: #a5a5a5;
+  font-style: italic;
+  font-size: 18px;
+  text-align: center;
 }
