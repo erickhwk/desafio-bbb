@@ -18,10 +18,6 @@ nav {
   width: 90%;
 }
 
-.container a {
-  align-self: flex-end;
-  width: 100%;
-}
 
 h1 {
   color: #333;
@@ -75,7 +71,11 @@ a {
   text-decoration: none;
   text-align: center;
   align-content: center;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
 }
+
 
 #error, #success {
   background-color: #f8d7da;
@@ -151,13 +151,6 @@ a {
   margin: 0 auto;
 }
 
-.button-wrapper {
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: end;
-}
-
 #votes-partial .participant {
   padding: 20px;
 }
@@ -199,7 +192,7 @@ a {
   font-weight: 600;
 }
 
-.vote-summary .total-votes {
+.vote-summary .total-votes, .last-hour-votes {
   display: flex;
   gap: 5px;
   justify-content: center;
