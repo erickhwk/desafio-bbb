@@ -2,25 +2,23 @@
 const getApiUrl = "http://localhost:3000/api/v1/contests/1"
 
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("DOM completamente carregado e analisado");
 
   fetch(getApiUrl)
       .then(response => {
           if (!response.ok) {
-              throw new Error('Network response was not ok ' + response.statusText);
+              throw new Error('Network response was not ok ' + response.statusText)
           }
-          return response.json();
+          return response.json()
       })
       .then(data => {
-          console.log("Dados recebidos:", data);
-          const participantsContainer = document.getElementById("participants");
+          const participantsContainer = document.getElementById("participants")
 
           // Clear the container first
-          participantsContainer.innerHTML = '';
+          participantsContainer.innerHTML = ''
 
           // Create the first participant
-          const firstParticipantDiv = document.createElement("div");
-          firstParticipantDiv.classList.add("participant");
+          const firstParticipantDiv = document.createElement("div")
+          firstParticipantDiv.classList.add("participant")
           firstParticipantDiv.innerHTML = `
               <label>
                   <input type="radio" name="participant" value="${data.first_participant.id}">
@@ -28,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
               </label>
               <img src="https://i.pravatar.cc/100?img=44" alt="">
           `;
-          participantsContainer.appendChild(firstParticipantDiv);
+          participantsContainer.appendChild(firstParticipantDiv)
 
           // Create the second participant
-          const secondParticipantDiv = document.createElement("div");
-          secondParticipantDiv.classList.add("participant");
+          const secondParticipantDiv = document.createElement("div")
+          secondParticipantDiv.classList.add("participant")
           secondParticipantDiv.innerHTML = `
               <label>
                   <input type="radio" name="participant" value="${data.second_participant.id}">
@@ -40,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
               </label>
               <img src="https://i.pravatar.cc/100?img=15" alt="">
           `;
-          participantsContainer.appendChild(secondParticipantDiv);
+          participantsContainer.appendChild(secondParticipantDiv)
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch(error => console.error('Error fetching data:', error))
 });
 
 // // Captcha handling
@@ -50,28 +48,86 @@ document.addEventListener("DOMContentLoaded", function() {
 //   document.getElementById("votingForm").submit();
 // }
 
-const postApiUrl = "http://localhost:3000/api/v1/contests/1/votes"
+// // Add event listener to the form submit
+// document.addEventListener("DOMContentLoaded", function() {
+//   const form = document.getElementById("votingForm")
+//   form.addEventListener("submit", function(event) {
+//     event.preventDefault()
 
-async function handleFormSubmit(event) {
+//     // Get the selected participant ID
+//     const selectedParticipant = document.querySelector('input[name="participant"]:checked');
+//     if (selectedParticipant) {
+//       console.log("Selected participant ID:", selectedParticipant.value)
+
+//       // Prepare the data to be sent in the POST request
+//       const data = {
+//         vote: {
+//           participant_id: selectedParticipant.value
+//         }
+//       };
+
+//       // Send the POST request
+//       fetch("http://localhost:3000/api/v1/contests/1/votes", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(data)
+//       })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error('Network response was not ok ' + response.statusText);
+//         }
+//         return response.json();
+//       })
+//       .then(responseData => {
+//         console.log("Response from the server:", responseData);
+//       })
+//       .catch(error => console.error('Error posting data:', error));
+//     } else {
+//       console.log("No participant selected");
+//     }
+//   });
+// });
+
+function onSubmit(token) {
+  const form = document.getElementById("votingForm");
+  
+  // Prevent the default form submission
   event.preventDefault();
 
-  const participantId = document.getElementById("participant_id").value;
+  // Get the selected participant ID
+  const selectedParticipant = document.querySelector('input[name="participant"]:checked');
+  if (selectedParticipant) {
+    console.log("Selected participant ID:", selectedParticipant.value);
 
-  const response = await fetch(postApiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+    // Prepare the data to be sent in the POST request
+    const data = {
       vote: {
-        participant_id: participantId
+        participant_id: selectedParticipant.value
       }
-    })
-  });
+    };
 
-  if (response.ok) {
-    alert('Vote submitted successfully!');
+    // Send the POST request
+    fetch("http://localhost:3000/api/v1/contests/1/votes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(responseData => {
+      console.log("Response from the server:", responseData);
+      // Optionally, you can redirect the user or show a success message here
+    })
+    .catch(error => console.error('Error posting data:', error));
   } else {
-    alert('Error submitting vote.');
+    console.log("No participant selected");
   }
 }
