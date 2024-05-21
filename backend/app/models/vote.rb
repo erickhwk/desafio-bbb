@@ -13,4 +13,8 @@ class Vote < ApplicationRecord
       errors.add(:participant_id, 'is not a valid contestant.')
     end
   end
+
+  def self.votes_in_last_hour_for_contest(contest_id)
+    where(contest_id: contest_id).where('created_at >= ?', Time.now - 1.hour).count
+  end
 end

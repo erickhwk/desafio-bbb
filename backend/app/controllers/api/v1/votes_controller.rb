@@ -15,6 +15,8 @@ class Api::V1::VotesController < ApplicationController
     end
   end
 
+  
+
   private
 
   def vote_params
