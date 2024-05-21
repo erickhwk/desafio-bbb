@@ -43,91 +43,46 @@ document.addEventListener("DOMContentLoaded", function() {
       .catch(error => console.error('Error fetching data:', error))
 });
 
-// // Captcha handling
-// function onSubmit(token) {
-//   document.getElementById("votingForm").submit();
-// }
+document.addEventListener('DOMContentLoaded', function () {
+  function onSubmit(token) {
+    const form = document.getElementById("votingForm");
 
-// // Add event listener to the form submit
-// document.addEventListener("DOMContentLoaded", function() {
-//   const form = document.getElementById("votingForm")
-//   form.addEventListener("submit", function(event) {
-//     event.preventDefault()
+    // Get the selected participant ID
+    const selectedParticipant = document.querySelector('input[name="participant"]:checked');
+    if (selectedParticipant) {
+      console.log("Selected participant ID:", selectedParticipant.value);
 
-//     // Get the selected participant ID
-//     const selectedParticipant = document.querySelector('input[name="participant"]:checked');
-//     if (selectedParticipant) {
-//       console.log("Selected participant ID:", selectedParticipant.value)
+      // Prepare the data to be sent in the POST request
+      const data = {
+        vote: {
+          participant_id: selectedParticipant.value
+        },
+        recaptcha_token: token
+      };
 
-//       // Prepare the data to be sent in the POST request
-//       const data = {
-//         vote: {
-//           participant_id: selectedParticipant.value
-//         }
-//       };
-
-//       // Send the POST request
-//       fetch("http://localhost:3000/api/v1/contests/1/votes", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(data)
-//       })
-//       .then(response => {
-//         if (!response.ok) {
-//           throw new Error('Network response was not ok ' + response.statusText);
-//         }
-//         return response.json();
-//       })
-//       .then(responseData => {
-//         console.log("Response from the server:", responseData);
-//       })
-//       .catch(error => console.error('Error posting data:', error));
-//     } else {
-//       console.log("No participant selected");
-//     }
-//   });
-// });
-
-function onSubmit(token) {
-  const form = document.getElementById("votingForm");
-  
-  // Prevent the default form submission
-  event.preventDefault();
-
-  // Get the selected participant ID
-  const selectedParticipant = document.querySelector('input[name="participant"]:checked');
-  if (selectedParticipant) {
-    console.log("Selected participant ID:", selectedParticipant.value);
-
-    // Prepare the data to be sent in the POST request
-    const data = {
-      vote: {
-        participant_id: selectedParticipant.value
-      }
-    };
-
-    // Send the POST request
-    fetch("http://localhost:3000/api/v1/contests/1/votes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json();
-    })
-    .then(responseData => {
-      console.log("Response from the server:", responseData);
-      // Optionally, you can redirect the user or show a success message here
-    })
-    .catch(error => console.error('Error posting data:', error));
-  } else {
-    console.log("No participant selected");
+      // Send the POST request
+      fetch("http://localhost:3000/api/v1/contests/1/votes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(responseData => {
+        console.log("Response from the server:", responseData);
+        // LIDAR COM O REDIRECT AQUI
+      })
+      .catch(error => console.error('Error posting data:', error));
+    } else {
+      console.log("No participant selected");
+    }
   }
-}
+
+  window.onSubmit = onSubmit;
+});
