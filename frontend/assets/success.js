@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         participantPartialDiv.innerHTML = `
           <p class="option">${participant.name}</p>
-          <p class="option">${votesPercentage(participant.votes, data.total_votes)}%</p>
+          <p class="option"><strong>${votesPercentage(participant.votes, data.total_votes)}%</strong></p>
         `;
 
         votesPartialContainer.appendChild(participantPartialDiv);
