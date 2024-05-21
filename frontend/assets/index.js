@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get the selected participant ID
     const selectedParticipant = document.querySelector('input[name="participant"]:checked');
     if (selectedParticipant) {
-      console.log("Selected participant ID:", selectedParticipant.value);
 
       // Prepare the data to be sent in the POST request
       const data = {
@@ -70,19 +69,19 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
+          throw new Error('Network response was not ok ' + response.statusText)
         }
-        return response.json();
+        return response.json()
       })
       .then(responseData => {
-        console.log("Response from the server:", responseData);
-        // LIDAR COM O REDIRECT AQUI
+        console.log("Response from the server:", responseData)
+        window.location.href = "success.html"
       })
-      .catch(error => console.error('Error posting data:', error));
+      .catch(error => console.error('Error posting data:', error))
     } else {
-      console.log("No participant selected");
+      console.log("No participant selected")
     }
   }
 
-  window.onSubmit = onSubmit;
+  window.onSubmit = onSubmit
 });

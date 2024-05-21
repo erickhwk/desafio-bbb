@@ -1,8 +1,7 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  background-color: rgb(126 34 206);
   font-family: "Encode Sans Expanded", sans-serif;
+  background-color: rgb(126, 34, 206);
 }
 
 .container {
@@ -24,7 +23,6 @@ h2 {
   color: white;
   text-align: center;
   font-size: 28px;
-  font-family: "Encode Sans Expanded", sans-serif;
   font-weight: 100;
 }
 
@@ -39,10 +37,11 @@ label {
   margin: 10px 0;
 }
 
-button {
+button, a {
+  height: 60px;
   width: 100%;
   padding: 10px 20px;
-  background-color: rgb(126 34 206);
+  background-color: rgb(126, 34, 206);
   font-size: 16px;
   font-weight: bold;
   border: none;
@@ -51,8 +50,14 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover, a:hover {
   background-color: rgb(150, 77, 213);
+}
+
+a {
+  width: 65%;
+  text-decoration: none;
+  text-align: center;
 }
 
 #error, #success {
@@ -64,25 +69,28 @@ button:hover {
   border-radius: 5px;
 }
 
-.participant {
+.participant, .participant-partial {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  border: 1px solid lightgray ;
+  border: 1px solid lightgray;
   border-radius: 4px;
   padding: 15px 5px;
   margin-bottom: 10px;
 }
 
+.participant-partial {
+  padding: 15px 20px;
+}
+
 .participant img {
   margin: -15px -5px;
   border-radius: 4px;
-
 }
 
 .option {
-  font-size: 20px
+  font-size: 20px;
 }
 
 .subtitle {
@@ -90,4 +98,42 @@ button:hover {
   font-style: italic;
   font-size: 18px;
   text-align: center;
+}
+
+.checkmark {
+  width: 30px;
+  height: 30px;
+}
+
+.vote-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vote-check .subtitle {
+  font-size: 28px;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.vote {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vote h1 {
+  padding: 0;
+  margin-top: -20px;
+  text-align: start;
+}
+
+#votes-partial {
+  width: 70%;
+}
+
+#votes-partial .participant {
+  padding: 20px;
 }
