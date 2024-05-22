@@ -3,14 +3,11 @@ class Api::V1::VotesController < ApplicationController
   before_action :validate_recaptcha, only: :create
   
   def create
-    @contest = Contest.find(params[:contest_id])
-    @vote = @contest.votes.new(vote_params)
-
-    if @vote.save
-      render json: { message: 'Voto registrado com sucesso.' }, status: :created
-    else
-      render json: { errors: @vote.errors.full_messages }, status: :unprocessable_entity
-    end
+    contest_id = params[:contest_id]
+    participant_id = params[:vote][:participant_id]
+    VoteJob.perform_async(contest_id, participant_id)
+    
+    render json: { message: 'Vote received for processing.' }, status: :accepted
   end
 
   
