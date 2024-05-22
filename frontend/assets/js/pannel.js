@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
       votesPartialContainer.innerHTML = '';
 
       function votesPercentage(participant_votes, total_votes) {
-        const participant_vote_percentage = (participant_votes / total_votes) * 100;
+        const participant_vote_percentage = (total_votes === 0) ? 0 : (participant_votes / total_votes) * 100;
         return participant_vote_percentage.toFixed(2);
       }
 

@@ -1,3 +1,5 @@
+puts "Generating participants for this season..."
+
 participants = [
   "Juliette Freire",
   "Gilberto Nogueira",
@@ -25,4 +27,16 @@ participants.each do |participant_name|
   Participant.create(name: participant_name)
 end
 
-puts "Participantes do BBB 21 foram criados com sucesso!"
+puts "Participants created successfully!"
+
+puts "Creating the first Contest..."
+first_participant_id = rand(1..20)
+second_participant_id = rand(1..20)
+
+until second_participant_id != first_participant_id
+  second_participant_id = rand(1..20)
+end
+
+Contest.create(first_participant_id: first_participant_id, 
+               second_participant_id: second_participant_id
+)
