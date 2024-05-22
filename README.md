@@ -46,16 +46,16 @@ bundle install
 
 ### Configurar Variáveis de Ambiente
 Crie um arquivo .env na no diretório /backend:
+
 ```bash
 touch .env
 ```
-
-Com o seguinte conteúdo:
+Copie o conteúdo de .env.example para .env
 
 ```bash
-RECAPTCHA_SITE_KEY="6LefZ-QpAAAAAIOr0T-1JPVyATGGAhPWvJ3_QS1M"
-RECAPTCHA_SECRET_KEY="6LefZ-QpAAAAAJESd-NzEznfVWutdyqIVAVYfVBA"
+cp .env.example .env
 ```
+A chave será encaminhada por email.
 
 ### Configurar o Banco de Dados
 No diretório /backend:
