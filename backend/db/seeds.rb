@@ -35,7 +35,7 @@ puts "Participants created successfully!"
 
 puts "Creating the first Contest..."
 
-last_participant_index = participants.lenght-1
+last_participant_index = participants.length-1
 
 first_participant_id = rand(1..last_participant_index)
 second_participant_id = rand(1..last_participant_index)
