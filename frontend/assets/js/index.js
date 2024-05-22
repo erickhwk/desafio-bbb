@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function() {
                   <input type="radio" name="participant" value="${data.first_participant.id}">
                   <span class="option">${data.first_participant.name}</span>
               </label>
-              <img src="https://i.pravatar.cc/100?img=44" alt="">
-          `;
+              <img src="https://f.i.uol.com.br/fotografia/2021/03/08/16152582786046e2a61421e_1615258278_3x2_xs.jpg" alt="">
+              `;
           participantsContainer.appendChild(firstParticipantDiv)
 
           // Create the second participant
@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
                   <input type="radio" name="participant" value="${data.second_participant.id}">
                   <span class="option">${data.second_participant.name}</span>
               </label>
-              <img src="https://i.pravatar.cc/100?img=15" alt="">
-          `;
+              <img src="https://f.i.uol.com.br/fotografia/2021/02/09/16128407046021ff005c199_1612840704_3x2_rt.jpg" alt="">
+              `;
           participantsContainer.appendChild(secondParticipantDiv)
       })
       .catch(error => console.error('Error fetching data:', error))
