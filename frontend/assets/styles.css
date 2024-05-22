@@ -201,3 +201,16 @@ a {
   gap: 5px;
   justify-content: center;
 }
+
+.footer-button {
+  background-color: white;
+  color: rgb(126, 34, 206);
+  font-size: 14px;
+}
+
+
+.footer-button:hover {
+  background-color: white;
+  color: rgb(150, 77, 213);
+  font-size: 14px;
+}
