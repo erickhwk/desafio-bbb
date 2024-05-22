@@ -189,6 +189,7 @@ a {
 
 .vote-summary .participant-name {
   color: #959595;
+  text-align: center;
 }
 
 .vote-summary .percentage {
