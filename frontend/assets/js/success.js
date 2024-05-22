@@ -12,13 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
       const votesPartialContainer = document.getElementById('votes-partial');
       votesPartialContainer.innerHTML = '';
 
-      // Função para calcular a porcentagem de votos
       function votesPercentage(participant_votes, total_votes) {
         const participant_vote_percentage = (participant_votes / total_votes) * 100;
         return participant_vote_percentage.toFixed(2);
       }
 
-      // Criar e adicionar os participantes
       Object.keys(data.participants).forEach(participantKey => {
         const participant = data.participants[participantKey];
         

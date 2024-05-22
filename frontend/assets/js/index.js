@@ -26,11 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
           return participantDiv;
         }
 
-        // Create the first participant
         const firstParticipantDiv = createParticipantDiv(data.first_participant);
         participantsContainer.appendChild(firstParticipantDiv);
 
-        // Create the second participant
         const secondParticipantDiv = createParticipantDiv(data.second_participant);
         participantsContainer.appendChild(secondParticipantDiv);
 
@@ -42,11 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
   function onSubmit(token) {
     const form = document.getElementById("votingForm");
 
-    // Get the selected participant ID
     const selectedParticipant = document.querySelector('input[name="participant"]:checked');
     if (selectedParticipant) {
 
-      // Prepare the data to be sent in the POST request
       const data = {
         vote: {
           participant_id: selectedParticipant.value
@@ -54,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
         recaptcha_token: token
       };
 
-      // Send the POST request
       fetch("http://localhost:3000/api/v1/contests/1/votes", {
         method: "POST",
         headers: {
