@@ -102,3 +102,44 @@ http-server
 ### Acessar a Aplicação
 - **Backend:** Acesse http://localhost:3000
 - **Frontend:** Acesse http://127.0.0.1:8080 (ou a porta que o http-server estiver usando)
+
+
+# Arquitetura
+
+### Visão Geral
+Esta documentação detalha a arquitetura do projeto "Desafio BBB", uma aplicação web que permite aos usuários votarem em participantes para eliminação em um reality show. A aplicação é construída com Ruby on Rails e utiliza Sidekiq para processamento assíncrono de votos e Redis como backend para fila de mensagens.
+
+### Arquitetura de Camadas
+A aplicação segue uma arquitetura de camadas, dividindo as responsabilidades em três camadas principais:
+
+- **Apresentação (Frontend):** Responsável pela interface gráfica com o usuário, exibindo formulários de votação, o painel de resultados e outras informações relevantes.
+- **Aplicação (Backend):** Responsável pela lógica de negócio da aplicação, incluindo a validação de votos, processamento de resultados e armazenamento de dados.
+- **Dados:** Responsável pelo armazenamento de dados da aplicação, utilizando um banco de dados relacional PostgreSQL.
+
+## Componentes do Sistema
+
+### Frontend:
+- **Página de Votação:** Permite que os usuários selecionem um participante para eliminar e enviem seus votos.
+- **Página de Confirmação:** Exibe a validação do voto do usuário e exibe o estado atual da votação. 
+- **Painel de Resultados:** Exibe os votos em tempo real e o ranking dos participantes.
+
+### Backend:
+- **Controladores:** Gerenciam as requisições HTTP da API, validando votos, enfileirando tarefas assíncronas e atualizando os resultados.
+- **Modelos:** Representam os dados da aplicação, como participantes, votos e concursos.
+- **Jobs:** Processam tarefas assíncronas, como a atualização dos resultados das votações.
+
+### Processamento Assíncrono
+O Sidekiq é utilizado para processar tarefas assíncronas de forma eficiente, aproveitando ao máximo os recursos do servidor. O VoteJob é responsável por processar os votos, atualizando o banco de dados e notificando o frontend sobre as mudanças.
+
+## Fluxo de Votação
+- **Usuário Seleciona Participante:** O usuário acessa a página de votação e seleciona o participante que deseja eliminar.
+- **Validação do reCAPTCHA:** O formulário de votação é protegido pelo Google reCAPTCHA para evitar bots e votos fraudulentos.
+- **Envio do Voto:** O usuário envia o formulário de votação, que é processado pelo controlador Api::V1::VotesController#create.
+- **Validação do Voto:** O controlador valida o voto, incluindo a verificação do token do reCAPTCHA e a verificação de regras de negócio.
+- **Enfileiramento de Tarefa Assíncrona:** Se o voto for válido, um VoteJob é enfileirado no Sidekiq para processamento assíncrono.
+- **Processamento Assíncrono:** O VoteJob processa o voto, atualizando o banco de dados com o novo voto e notificando o frontend sobre a mudança.
+- **Atualização do Painel de Resultados:** O frontend pode periodicamente solicitar o status da votação para atualizar o painel de resultados com os votos mais recentes.
+
+### Considerações de Implementação
+- **Desempenho:** A aplicação é otimizada para lidar com um grande número de votos simultâneos, utilizando técnicas como cache e processamento assíncrono.
+- **Segurança:** A aplicação implementa medidas de segurança para proteger contra ataques cibernéticos de bots, garantindo validação das entradas.
