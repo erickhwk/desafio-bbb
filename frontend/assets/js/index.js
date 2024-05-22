@@ -1,7 +1,5 @@
-// Load Contestants Data in the Poll
-const getApiUrl = "http://localhost:3000/api/v1/contests/1"
-
 document.addEventListener("DOMContentLoaded", function() {
+  const getApiUrl = "http://localhost:3000/api/v1/contests/1"
 
   fetch(getApiUrl)
       .then(response => {
@@ -23,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
               <input type="radio" name="participant" value="${participant.id}">
               <span class="option">${participant.name}</span>
             </label>
-            <img src="https://avatarairlines.com/wp-content/uploads/2020/05/Male-placeholder.jpeg" alt="">
+            <img src="../assets/img/male-placeholder.jpeg" alt="">
           `;
           return participantDiv;
         }
