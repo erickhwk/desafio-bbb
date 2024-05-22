@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener('DOMContentLoaded', function () {
   function onSubmit(token) {
-    const form = document.getElementById("votingForm");
-
     const selectedParticipant = document.querySelector('input[name="participant"]:checked');
     if (selectedParticipant) {
 

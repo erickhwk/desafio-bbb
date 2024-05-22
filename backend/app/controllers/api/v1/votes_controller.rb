@@ -1,6 +1,4 @@
-require 'net/http'
-require 'uri'
-require 'json'
+require 'httparty'
 class Api::V1::VotesController < ApplicationController
   before_action :validate_recaptcha, only: :create
   
@@ -26,11 +24,13 @@ class Api::V1::VotesController < ApplicationController
   def validate_recaptcha
     recaptcha_token = params[:recaptcha_token]
     secret_key = ENV['RECAPTCHA_SECRET_KEY']
-    uri = URI.parse("https://www.google.com/recaptcha/api/siteverify")
-    response = Net::HTTP.post_form(uri, {
-      'secret' => secret_key,
-      'response' => recaptcha_token
+    uri = "https://www.google.com/recaptcha/api/siteverify"
+
+    response = HTTParty.post(uri, body: {
+      secret: secret_key,
+      response: recaptcha_token
     })
+
     result = JSON.parse(response.body)
 
     unless result['success']
