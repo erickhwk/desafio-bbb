@@ -105,11 +105,6 @@ http-server
 
 
 # Arquitetura
-
-### Visão Geral
-Esta documentação detalha a arquitetura do projeto "Desafio BBB", uma aplicação web que permite aos usuários votarem em participantes para eliminação em um reality show. A aplicação é construída com Ruby on Rails e utiliza Sidekiq para processamento assíncrono de votos e Redis como backend para fila de mensagens.
-
-### Arquitetura de Camadas
 A aplicação segue uma arquitetura de camadas, dividindo as responsabilidades em três camadas principais:
 
 - **Apresentação (Frontend):** Responsável pela interface gráfica com o usuário, exibindo formulários de votação, o painel de resultados e outras informações relevantes.
@@ -132,6 +127,8 @@ A aplicação segue uma arquitetura de camadas, dividindo as responsabilidades e
 O Sidekiq é utilizado para processar tarefas assíncronas de forma eficiente, aproveitando ao máximo os recursos do servidor. O VoteJob é responsável por processar os votos, atualizando o banco de dados e notificando o frontend sobre as mudanças.
 
 ## Fluxo de Votação
+
+- **Recebimento de dados:** A página inicial recebe da API os dados dos participantes envolvidos naquela votação(paredão) específico.
 - **Usuário Seleciona Participante:** O usuário acessa a página de votação e seleciona o participante que deseja eliminar.
 - **Validação do reCAPTCHA:** O formulário de votação é protegido pelo Google reCAPTCHA para evitar bots e votos fraudulentos.
 - **Envio do Voto:** O usuário envia o formulário de votação, que é processado pelo controlador Api::V1::VotesController#create.
