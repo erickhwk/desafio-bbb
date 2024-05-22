@@ -1,5 +1,7 @@
+const baseUrl = (window.location.hostname === 'localhost') ? 'http://localhost:3000' : 'https://api.example.com';
+
 document.addEventListener('DOMContentLoaded', function () {
-  const voteSummaryApiUrl = 'http://localhost:3000/api/v1/contests/1/votes_summary';
+  const voteSummaryApiUrl = `${baseUrl}/api/v1/contests/1/votes_summary`;
 
   fetch(voteSummaryApiUrl)
     .then(response => {

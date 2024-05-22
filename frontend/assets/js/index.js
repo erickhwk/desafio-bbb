@@ -1,7 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const getApiUrl = "http://localhost:3000/api/v1/contests/1"
+const baseUrl = (window.location.hostname === 'localhost') ? 'http://localhost:3000' : 'https://api.example.com';
 
-  fetch(getApiUrl)
+document.addEventListener("DOMContentLoaded", function() {  
+  const contestUrl = `${baseUrl}/api/v1/contests/1`;
+
+  fetch(contestUrl)
       .then(response => {
           if (!response.ok) {
               throw new Error('Network response was not ok ' + response.statusText)
@@ -47,8 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         recaptcha_token: token
       };
+      
+      const voteUrl = `${baseUrl}/api/v1/contests/1/votes`;
 
-      fetch("http://localhost:3000/api/v1/contests/1/votes", {
+      fetch(voteUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
