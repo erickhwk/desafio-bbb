@@ -11,34 +11,31 @@ document.addEventListener("DOMContentLoaded", function() {
           return response.json()
       })
       .then(data => {
-          const participantsContainer = document.getElementById("participants")
+        const participantsContainer = document.getElementById("participants");
 
-          // Clear the container first
-          participantsContainer.innerHTML = ''
+        participantsContainer.innerHTML = '';
 
-          // Create the first participant
-          const firstParticipantDiv = document.createElement("div")
-          firstParticipantDiv.classList.add("participant")
-          firstParticipantDiv.innerHTML = `
-              <label>
-                  <input type="radio" name="participant" value="${data.first_participant.id}">
-                  <span class="option">${data.first_participant.name}</span>
-              </label>
-              <img src="https://f.i.uol.com.br/fotografia/2021/03/08/16152582786046e2a61421e_1615258278_3x2_xs.jpg" alt="">
-              `;
-          participantsContainer.appendChild(firstParticipantDiv)
+        const createParticipantDiv = (participant) => {
+          const participantDiv = document.createElement("div");
+          participantDiv.classList.add("participant");
+          participantDiv.innerHTML = `
+            <label>
+              <input type="radio" name="participant" value="${participant.id}">
+              <span class="option">${participant.name}</span>
+            </label>
+            <img src="https://avatarairlines.com/wp-content/uploads/2020/05/Male-placeholder.jpeg" alt="">
+          `;
+          return participantDiv;
+        }
 
-          // Create the second participant
-          const secondParticipantDiv = document.createElement("div")
-          secondParticipantDiv.classList.add("participant")
-          secondParticipantDiv.innerHTML = `
-              <label>
-                  <input type="radio" name="participant" value="${data.second_participant.id}">
-                  <span class="option">${data.second_participant.name}</span>
-              </label>
-              <img src="https://f.i.uol.com.br/fotografia/2021/02/09/16128407046021ff005c199_1612840704_3x2_rt.jpg" alt="">
-              `;
-          participantsContainer.appendChild(secondParticipantDiv)
+        // Create the first participant
+        const firstParticipantDiv = createParticipantDiv(data.first_participant);
+        participantsContainer.appendChild(firstParticipantDiv);
+
+        // Create the second participant
+        const secondParticipantDiv = createParticipantDiv(data.second_participant);
+        participantsContainer.appendChild(secondParticipantDiv);
+
       })
       .catch(error => console.error('Error fetching data:', error))
 });
