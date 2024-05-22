@@ -9,6 +9,7 @@ backend/.bundle
 
 # Ignore all environment files (except templates).
 backend/.env*
+!backend/.env.example
 !backend/.env*.erb
 
 # Ignore all logfiles and tempfiles.
