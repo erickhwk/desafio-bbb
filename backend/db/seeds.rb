@@ -49,3 +49,7 @@ Contest.create(first_participant_id: first_participant_id,
 )
 
 puts "Contest created successfully!"
+
+Contest.last.activate!
+
+puts "Contest activated successfully!"
