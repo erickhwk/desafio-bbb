@@ -104,6 +104,8 @@ http-server
 - **Backend:** Acesse http://localhost:3000
 - **Frontend:** Acesse http://127.0.0.1:8080 (ou a porta que o http-server estiver usando)
 
+# API Doc
+- [Postman Documentation](https://documenter.getpostman.com/view/21068104/2sA3QpBtAZ)
 
 # Arquitetura
 A aplicação segue uma arquitetura de camadas, dividindo as responsabilidades em três camadas principais:
