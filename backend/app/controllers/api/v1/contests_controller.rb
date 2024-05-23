@@ -1,7 +1,7 @@
 class Api::V1::ContestsController < ApplicationController
-before_action :set_contests, only: [:show, :votes_summary]
+before_action :set_contests, only: [:show_active, :votes_summary]
 
-  def show
+  def show_active
     render json: {
       id: @contest.id,
       first_participant: { id: @contest.first_participant_id, name: @contest.first_participant.name},
@@ -28,6 +28,6 @@ before_action :set_contests, only: [:show, :votes_summary]
   private
 
   def set_contests
-    @contest = Contest.find(params[:id])
+    @contest = Contest.find_by(status: true)
   end
 end

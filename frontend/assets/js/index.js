@@ -1,7 +1,7 @@
 const baseUrl = (window.location.hostname === 'localhost') ? 'http://localhost:3000' : 'https://api.example.com';
 
 document.addEventListener("DOMContentLoaded", function() {  
-  const contestUrl = `${baseUrl}/api/v1/contests/1`;
+  const contestUrl = `${baseUrl}/api/v1/contest/active`;
 
   fetch(contestUrl)
       .then(response => {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         recaptcha_token: token
       };
       
-      const voteUrl = `${baseUrl}/api/v1/contests/1/votes`;
+      const voteUrl = `${baseUrl}/api/v1/contest/active/vote`;
 
       fetch(voteUrl, {
         method: "POST",

@@ -3,7 +3,7 @@ class Api::V1::VotesController < ApplicationController
   before_action :validate_recaptcha, only: :create
   
   def create
-    contest_id = params[:contest_id]
+    contest_id = Contest.find_by(status: true).id
     participant_id = params[:vote][:participant_id]
     VoteJob.perform_async(contest_id, participant_id)
     
