@@ -27,6 +27,7 @@ Esta aplicação permite aos usuários votar nos participantes que desejam elimi
 - [Ruby 3.3.0](https://www.ruby-lang.org/en/downloads/)
 - [Rails 7.1.3](https://guides.rubyonrails.org/v7.1.3/)
 - [Redis 5.2.0](https://redis.io/download)
+- [Sidekiq 7.2.4](https://sidekiq.org/)
 - [Node.js](https://nodejs.org/)
 - [http-server](https://www.npmjs.com/package/http-server)
 
